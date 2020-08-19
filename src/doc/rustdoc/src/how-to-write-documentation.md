@@ -1,12 +1,52 @@
 # How to write documentation
 
+Good documentation is not natural.  There are opposing forces that make good
+documentation difficult.  It requires expertise in the subject but also
+requires writing to a novice perspective.  Documentation therefore often 
+glazes over implementation detail, or leaves an explain like I'm 5 response.
+
+There are tenants to Rust documentation that can help guide anyone through
+the process of documenting libraries so everyone has ample opportunity to
+use the code.  
+
 This chapter covers not only how to write documentation but specifically
-how to write **good** documentation.  Something to keep in mind when
-writing documentation is that your audience is not just yourself but others
-who simply don't have the context you do.  It is important to be as clear
+how to write **good** documentation.  It is important to be as clear
 as you can, and as complete as possible.  As a rule of thumb: the more
 documentation you write for your crate the better.  If an item is public
 then it should be documented.
+
+## Getting Started
+
+Documenting a crate should begin with front-page documentation.  As an
+example, [hashbrown](https://docs.rs/hashbrown/0.8.2/hashbrown/) crate level
+documentation summarizes the role of the crate, provides links to explain
+technical details, and gives the reason why to use the crate.  
+
+After introducing the crate, it is important that within the front-page 
+an example be given how to use the crate in a real world setting.  The
+example benefits from isolating the library's role from the implementation
+details, but doing so without shortcuts also benefits users who may copy
+and paste the example to get started. 
+
+[futures](https://docs.rs/futures/0.3.5/futures/) uses an approach of using
+inline comments to explain line by line the complexities of using a future,
+because often people's first exposure to rust's future is this example.
+
+[backtrace](https://docs.rs/backtrace/0.3.50/backtrace/) usage walks through
+the whole process, explaining changes made to the `Cargo.toml` file, passing
+command line arguments to the compiler, and shows a quick example of
+backtrace in the wild.  
+
+Finally, the front-page can eventually become a comprehensive reference
+how to ues a crate, like the usage found in 
+[regex](https://docs.rs/regex/1.3.9/regex/).  In this front page, all the 
+requirements are outlined, the gotchas are taught, then practical examples
+are provided.  The front page goes on to show how to use regular expressions
+then concludes with crate features.
+
+Don't worry about comparing your crate that is just beginning to get
+documentation to something more polished, just start incrementally and put
+in an introduction, example, and features.  Rome wasn't built in a day!
 
 ## Basic structure
 
