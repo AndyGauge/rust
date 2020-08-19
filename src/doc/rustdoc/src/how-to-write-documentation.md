@@ -48,6 +48,27 @@ Don't worry about comparing your crate that is just beginning to get
 documentation to something more polished, just start incrementally and put
 in an introduction, example, and features.  Rome wasn't built in a day!
 
+The first lines within the `lib.rs` will compose the front-page, and they
+use a different convention than the rest of the rustdocs.  Lines should
+start with `//!` which designate the code to refer to module-level or crate-
+level documentation.  Here's a quick example of the difference:
+
+```rust
+//! Provides an abstraction over a queue.  When the abstraction is used
+//! there are these advantages:
+//! - Fast
+//! - [`Easy`]
+//!
+//! [`Easy`]: http://thatwaseasy.example.com
+
+/// This module makes it easy.
+pub mod easy {
+
+    /// Use the abstract function to do this specific thing.
+    pub fn abstract {}
+
+}
+```
 ## Basic structure
 
 It is recommended that each item's documentation follows this basic structure:
