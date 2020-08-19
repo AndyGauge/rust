@@ -32,7 +32,11 @@ $ rustdoc src/lib.rs
 This will create a new directory, `doc`, with a website inside! In our case,
 the main page is located in `doc/lib/index.html`. If you open that up in
 a web browser, you'll see a page with a search bar, and "Crate lib" at the
-top, with no contents. There's two problems with this: first, why does it
+top, with no contents. 
+
+## Configuring rustdoc
+
+There's two problems with this: first, why does it
 think that our package is named "lib"? Second, why does it not have any
 contents?
 
@@ -85,13 +89,12 @@ dependency=<path>/docs/target/debug/deps
 You can see this with `cargo doc --verbose`.
 
 It generates the correct `--crate-name` for us, as well as pointing to
-`src/lib.rs` But what about those other arguments? `-o` controls the
-*o*utput of our docs. Instead of a top-level `doc` directory, you'll
-notice that Cargo puts generated documentation under `target`. That's
-the idiomatic place for generated files in Cargo projects. Also, it
-passes `-L`, a flag that helps rustdoc find the dependencies
-your code relies on. If our project used dependencies, we'd get
-documentation for them as well!
+`src/lib.rs` But what about those other arguments? 
+ - `-o` controls the *o*utput of our docs. Instead of a top-level 
+ `doc` directory, notice that Cargo puts generated documentation under 
+ `target`. That is the idiomatic place for generated files in Cargo projects.
+ - `-L` flag helps rustdoc find the dependencies your code relies on. 
+ If our project used dependencies, we'd get documentation for them as well!
 
 ## Using standalone Markdown files
 
@@ -105,7 +108,7 @@ This is a project to test out `rustdoc`.
 
 [Here is a link!](https://www.rust-lang.org)
 
-## Subheading
+## Example
 
 ```rust
 fn foo() -> i32 {
