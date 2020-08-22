@@ -1,13 +1,13 @@
 # How to write documentation
 
-Good documentation is not natural.  There are opposing forces that make good
-documentation difficult.  It requires expertise in the subject but also
-requires writing to a novice perspective.  Documentation therefore often 
-glazes over implementation detail, or leaves an explain like I'm 5 response.
+Good documentation is not natural.  There are opposing goals that make writing
+good documentation difficult.  It requires expertise in the subject but also
+writing to a novice perspective.  Documentation therefore often glazes over
+implementation detail, or leaves readers with unanswered questions.
 
-There are tenants to Rust documentation that can help guide anyone through
-the process of documenting libraries so everyone has ample opportunity to
-use the code.  
+There are a few tenets to Rust documentation that can help guide anyone through
+the process of documenting libraries so that everyone has an ample opportunity
+to use the code.  
 
 This chapter covers not only how to write documentation but specifically
 how to write **good** documentation.  It is important to be as clear
@@ -18,38 +18,37 @@ then it should be documented.
 ## Getting Started
 
 Documenting a crate should begin with front-page documentation.  As an
-example, [hashbrown] crate level documentation summarizes the role of
-the crate, provides links to explain technical details, and gives the 
-reason why to use the crate.  
+example, the [`hashbrown`] crate level documentation summarizes the role of
+the crate, provides links to explain technical details, and explains why you 
+would want to use the crate.  
 
-After introducing the crate, it is important that within the front-page 
-an example be given how to use the crate in a real world setting.  The
-example benefits from isolating the library's role from the implementation
-details, but doing so without shortcuts also benefits users who may copy
-and paste the example to get started. 
+After introducing the crate, it is important that the front-page gives 
+an example of how to use the crate in a real world setting.  Stick to the
+library's role in the example, but do so without shortcuts to benefit users who
+may copy and paste the example to get started. 
 
-[futures] uses an approach of inline comments to explain line by line
-the complexities of using a future, because often people's first exposure to 
-rust's future is this example.
+[`futures`] uses inline comments to explain line by line
+the complexities of using a [`Future`], because a person's first exposure to 
+rust's [`Future`] may be this example.
 
-[backtrace] usage walks through the whole process, explaining changes made
-to the `Cargo.toml` file, passing command line arguments to the compiler,
-and shows a quick example of backtrace in the wild.  
+The [`backtrace`] documentation walks through the whole process, explaining 
+changes made to the `Cargo.toml` file, passing command line arguments to the
+compiler, and shows a quick example of backtrace in the wild.  
 
 Finally, the front-page can eventually become a comprehensive reference
-how to ues a crate, like the usage found in [regex].  In this front page, all
-the requirements are outlined, the gotchas are taught, then practical examples
-are provided.  The front page goes on to show how to use regular expressions
+how to use a crate, like [`regex`].  In this front page, all
+requirements are outlined, the edge cases shown, and practical examples 
+provided.  The front page goes on to show how to use regular expressions
 then concludes with crate features.
 
-Don't worry about comparing your crate that is just beginning to get
-documentation to something more polished, just start incrementally and put
-in an introduction, example, and features.  Rome wasn't built in a day!
+Don't worry about comparing your crate, which is just beginning.  To get the
+documentation to something more polished, start incrementally and put
+in an introduction, example, and features.  Rome was not built in a day!
 
 The first lines within the `lib.rs` will compose the front-page, and they
 use a different convention than the rest of the rustdocs.  Lines should
-start with `//!` which designate the code to refer to module-level or crate-
-level documentation.  Here's a quick example of the difference:
+start with `//!` which indicate module-level or crate-level documentation.
+Here's a quick example of the difference:
 
 ```rust
 //! Fast and easy queue abstraction.
@@ -65,21 +64,21 @@ level documentation.  Here's a quick example of the difference:
 pub mod easy {
 
     /// Use the abstract function to do this specific thing.
-    pub fn abstract {}
+    pub fn abstract() {}
 
 }
 ```
 
 Ideally, this first line of documentation is a sentence without highly 
-technical details, but very broadly descriptive of where this crate fits
-within the rust ecosystem.  Someone should know if this crate is qualified
-for investigation in their use case by this line.
+technical details, but descriptive of where this crate fits
+within the rust ecosystem.  Users should know whether this crate meets their use
+case after reading this line.
 
 ## Documenting components
 
-Whether documenting modules, structs, functions, or macros, the public
-API of all code should have some documentation, and rarely does anyone
-complain about too much documentation.
+Whether it is modules, structs, functions, or macros: the public
+API of all code should have documentation. Rarely does anyone
+complain about too much documentation!
 
 It is recommended that each item's documentation follows this basic structure:
 
@@ -98,7 +97,7 @@ documentation; while you might think that a code example is trivial,
 the examples are really important because they can help users understand 
 what an item is, how it is used, and for what purpose it exists.
 
-Let's see an example coming from the [standard library] by taking a look at the
+Let us see an example coming from the [standard library] by taking a look at the
 [`std::env::args()`][env::args] function:
 
 ``````text
@@ -133,17 +132,19 @@ for argument in env::args() {
 [`args_os`]: ./fn.args_os.html
 ``````
 
-The first line of description will be reused when describing the component in
-a higher level of the documentation.  For example, the function `std::env::args()`
-above can be found within the [`std::env`] module documentation.
+The first line of description will be reused to describe the component in
+searches and module overviews.  For example, the function `std::env::args()`
+above will be shown on the [`std::env`] module documentation.  Multi-line
+summaries are also possible, however, concise writing is a goal of good
+documentation.
 
 Because the type system does a good job of defining what is passed to a function
-and what is returned from one, there is not a benefit of explicitly writing those
-things into the documentation.  Rustdoc makes sure the links to the types included
-in the signature are linked.
+and what is returned from one, there is not a benefit of explicitly writing it
+into the documentation.  Rustdoc makes sure the links to the types included
+in the function signature are linked.
 
-In the example above, a Panics section explains when the code might abruptly exit
-which can help the reader build guards if required.  A panic section is recommended
+In the example above, a 'Panics' section explains when the code might abruptly exit,
+which can help the reader prevent reaching a panic.  A panic section is recommended
 every time edge cases in your code can be reached if known.
 
 As you can see, it follows the structure detailed above: it starts with a short
@@ -154,17 +155,18 @@ and finally provides a code example.
 
 `rustdoc` is using the [commonmark markdown specification]. You might be
 interested into taking a look at their website to see what's possible to do.
-
-[commonmark quick reference] is a very helpful resource for the majority of
-use cases.
+ - [commonmark quick reference]
+ - [current spec]
 
 
 [backtrace]: https://docs.rs/backtrace/0.3.50/backtrace/
 [commonmark markdown specification]: https://commonmark.org/
 [commonmark quick reference]: https://commonmark.org/help/
 [env::args]: https://doc.rust-lang.org/stable/std/env/fn.args.html
-[futures]: https://docs.rs/futures/0.3.5/futures/
-[hashbrown]: https://docs.rs/hashbrown/0.8.2/hashbrown/
-[regex]: https://docs.rs/regex/1.3.9/regex/
+[`Future`]: https://doc.rust-lang.org/std/future/trait.Future.html 
+[`futures`]: https://docs.rs/futures/0.3.5/futures/
+[`hashbrown`]: https://docs.rs/hashbrown/0.8.2/hashbrown/
+[`regex`]: https://docs.rs/regex/1.3.9/regex/
 [standard library]: https://doc.rust-lang.org/stable/std/index.html
+[current spec]: https://spec.commonmark.org/current/
 [`std::env`]: https://doc.rust-lang.org/stable/std/env/index.html#functions

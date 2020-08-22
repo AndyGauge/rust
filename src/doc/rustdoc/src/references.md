@@ -1,10 +1,7 @@
 # References
 
-There are many great `rustdoc` references out there.  This is a collection of 
-those documentation documents on the internet at the time of writing.  If you
-know of other great resources, please submit a pull request:
-
-[Rust official Github]
+There are many great `rustdoc` references out there.
+If you know of other great resources, please submit a pull request
 
 ## Official 
 
@@ -31,5 +28,4 @@ know of other great resources, please submit a pull request:
 [RFC 1946: Intra Rustdoc Links]: https://rust-lang.github.io/rfcs/1946-intra-rustdoc-links.html
 [RFC (stalled) front page styleguide]: https://github.com/rust-lang/rfcs/pull/1687
 [Rust By Example]: https://doc.rust-lang.org/stable/rust-by-example/meta/doc.html
-[Rust official Github]: https://github.com/rust-lang/rust/pulls
 [Rust Reference]: https://doc.rust-lang.org/stable/reference/comments.html#doc-comments

@@ -7,14 +7,14 @@ CSS, and JavaScript.
 
 ## Basic usage
 
-Let's give it a try! Let's create a new project with Cargo:
+Let us give it a try! Create a new project with Cargo:
 
 ```bash
 $ cargo new docs
 $ cd docs
 ```
 
-In `src/lib.rs`, you'll find that Cargo has generated some sample code. Delete
+In `src/lib.rs`, Cargo has generated some sample code. Delete
 it and replace it with this:
 
 ```rust
@@ -22,7 +22,7 @@ it and replace it with this:
 fn foo() {}
 ```
 
-Let's run `rustdoc` on our code. To do so, we can call it with the path to
+Now, run `rustdoc` on our code. To do so, we can call it with the path to
 our crate root like this:
 
 ```bash
@@ -31,12 +31,12 @@ $ rustdoc src/lib.rs
 
 This will create a new directory, `doc`, with a website inside! In our case,
 the main page is located in `doc/lib/index.html`. If you open that up in
-a web browser, you'll see a page with a search bar, and "Crate lib" at the
+a web browser, you will see a page with a search bar, and "Crate lib" at the
 top, with no contents. 
 
 ## Configuring rustdoc
 
-There's two problems with this: first, why does it
+There are two problems with this: first, why does it
 think that our package is named "lib"? Second, why does it not have any
 contents?
 
@@ -50,7 +50,7 @@ $ rustdoc src/lib.rs --crate-name docs
 
 Now, `doc/docs/index.html` will be generated, and the page says "Crate docs."
 
-For the second issue, it's because our function `foo` is not public; `rustdoc`
+For the second issue, it is because our function `foo` is not public; `rustdoc`
 defaults to generating documentation for only public functions. If we change
 our code...
 
@@ -65,7 +65,7 @@ pub fn foo() {}
 $ rustdoc src/lib.rs --crate-name docs
 ```
 
-We'll have some generated documentation. Open up `doc/docs/index.html` and
+We will have some generated documentation. Open up `doc/docs/index.html` and
 check it out! It should show a link to the `foo` function's page, which
 is located at `doc/docs/fn.foo.html`. On that page, you'll see the "foo is
 a function" we put inside the documentation comment in our crate.
@@ -89,16 +89,16 @@ dependency=<path>/docs/target/debug/deps
 You can see this with `cargo doc --verbose`.
 
 It generates the correct `--crate-name` for us, as well as pointing to
-`src/lib.rs` But what about those other arguments? 
+`src/lib.rs`. But what about those other arguments? 
  - `-o` controls the *o*utput of our docs. Instead of a top-level 
  `doc` directory, notice that Cargo puts generated documentation under 
  `target`. That is the idiomatic place for generated files in Cargo projects.
  - `-L` flag helps rustdoc find the dependencies your code relies on. 
- If our project used dependencies, we'd get documentation for them as well!
+ If our project used dependencies, we would get documentation for them as well!
 
 ## Using standalone Markdown files
 
-`rustdoc` can also generate HTML from standalone Markdown files. Let's
+`rustdoc` can also generate HTML from standalone Markdown files. Let us
 give it a try: create a `README.md` file with these contents:
 
 ````text
@@ -123,7 +123,7 @@ And call `rustdoc` on it:
 $ rustdoc README.md
 ```
 
-You'll find an HTML file in `docs/doc/README.html` generated from its
+You will find an HTML file in `docs/doc/README.html` generated from its
 Markdown contents.
 
 Cargo currently does not understand standalone Markdown files, unfortunately.
