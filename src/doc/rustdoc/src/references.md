@@ -1,7 +1,7 @@
 # References
 
 There are many great `rustdoc` references out there.
-If you know of other great resources, please submit a pull request
+If you know of other great resources, please submit a pull request!
 
 ## Official 
 

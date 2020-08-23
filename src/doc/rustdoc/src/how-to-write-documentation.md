@@ -41,9 +41,10 @@ requirements are outlined, the edge cases shown, and practical examples
 provided.  The front page goes on to show how to use regular expressions
 then concludes with crate features.
 
-Don't worry about comparing your crate, which is just beginning.  To get the
-documentation to something more polished, start incrementally and put
-in an introduction, example, and features.  Rome was not built in a day!
+Don't worry about comparing your crate, which is just beginning, to other more
+developed crates.  To get the documentation to something more polished, start
+incrementally and put in an introduction, example, and features.  Rome was not 
+built in a day!
 
 The first lines within the `lib.rs` will compose the front-page, and they
 use a different convention than the rest of the rustdocs.  Lines should
@@ -132,10 +133,10 @@ for argument in env::args() {
 [`args_os`]: ./fn.args_os.html
 ``````
 
-The first line of description will be reused to describe the component in
-searches and module overviews.  For example, the function `std::env::args()`
-above will be shown on the [`std::env`] module documentation.  Multi-line
-summaries are also possible, however, concise writing is a goal of good
+Everything before the first empty line will be reused to describe the component 
+in searches and module overviews.  For example, the function `std::env::args()`
+above will be shown on the [`std::env`] module documentation.  It is good
+practice to keep the summary to one line: concise writing is a goal of good
 documentation.
 
 Because the type system does a good job of defining what is passed to a function
