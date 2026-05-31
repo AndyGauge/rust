@@ -1,0 +1,22 @@
+error[E0277]: the trait bound `OptOut16: Da16` is not satisfied
+  --> $DIR/default-bounds-count-clamp.rs:63:11
+   |
+LL |     needs(OptOut16);
+   |     ----- ^^^^^^^^ unsatisfied trait bound
+   |     |
+   |     required by a bound introduced by this call
+   |
+help: the trait `Da16` is not implemented for `OptOut16`
+  --> $DIR/default-bounds-count-clamp.rs:57:1
+   |
+LL | struct OptOut16;
+   | ^^^^^^^^^^^^^^^
+note: required by a bound in `needs`
+  --> $DIR/default-bounds-count-clamp.rs:60:10
+   |
+LL | fn needs<T>(_: T) {}
+   |          ^ required by this bound in `needs`
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0277`.
