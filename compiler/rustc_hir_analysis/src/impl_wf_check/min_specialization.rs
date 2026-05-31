@@ -413,10 +413,17 @@ fn check_specialization_on<'tcx>(
         // We allow specializing on explicitly marked traits with no associated
         // items.
         ty::ClauseKind::Trait(ty::TraitPredicate { trait_ref, polarity: _ }) => {
-            if matches!(
-                trait_specialization_kind(tcx, clause),
-                Some(TraitSpecializationKind::Marker)
-            ) {
+            // Experimental default auto traits (`-Zexperimental-default-bounds`)
+            // are implicit, empty, always-applicable bounds on every type
+            // parameter (like `Sized`), so specializing impls that carry them
+            // implicitly are sound to specialize on. `is_default_trait` is false
+            // unless the flag is enabled, so this is a no-op otherwise.
+            if tcx.is_default_trait(trait_ref.def_id)
+                || matches!(
+                    trait_specialization_kind(tcx, clause),
+                    Some(TraitSpecializationKind::Marker)
+                )
+            {
                 Ok(())
             } else {
                 Err(tcx

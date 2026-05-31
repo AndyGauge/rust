@@ -1363,3 +1363,33 @@ pub trait Reborrow {
 pub trait CoerceShared<Target: Copy>: Reborrow {
     /* compiler built-in */
 }
+
+// Placeholder default auto traits for the `-Zexperimental-default-bounds`
+// experiment (rust-lang/rust#138781, compiler-team#727). Defined here so they
+// exist in the sysroot, which is required to compile *real* crates with the
+// flag; they are otherwise inert empty auto traits.
+macro_rules! default_trait {
+    ($name:ident, $lang:literal) => {
+        #[lang = $lang]
+        #[unstable(feature = "default_auto_traits_experiment", issue = "138781")]
+        #[doc(hidden)]
+        pub auto trait $name {}
+    };
+}
+
+default_trait!(DefaultTrait1, "default_trait1");
+default_trait!(DefaultTrait2, "default_trait2");
+default_trait!(DefaultTrait3, "default_trait3");
+default_trait!(DefaultTrait4, "default_trait4");
+default_trait!(DefaultTrait5, "default_trait5");
+default_trait!(DefaultTrait6, "default_trait6");
+default_trait!(DefaultTrait7, "default_trait7");
+default_trait!(DefaultTrait8, "default_trait8");
+default_trait!(DefaultTrait9, "default_trait9");
+default_trait!(DefaultTrait10, "default_trait10");
+default_trait!(DefaultTrait11, "default_trait11");
+default_trait!(DefaultTrait12, "default_trait12");
+default_trait!(DefaultTrait13, "default_trait13");
+default_trait!(DefaultTrait14, "default_trait14");
+default_trait!(DefaultTrait15, "default_trait15");
+default_trait!(DefaultTrait16, "default_trait16");
