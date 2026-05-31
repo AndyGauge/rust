@@ -2321,6 +2321,9 @@ options! {
         "enforce the type length limit when monomorphizing instances in codegen"),
     experimental_default_bounds: bool = (false, parse_bool, [TRACKED],
         "enable default bounds for experimental group of auto traits"),
+    experimental_default_bounds_count: usize = (4, parse_number, [TRACKED],
+        "number of experimental default auto trait bounds to add, max 16 (default: 4); \
+         only takes effect with `-Zexperimental-default-bounds`"),
     export_executable_symbols: bool = (false, parse_bool, [TRACKED],
         "export symbols from executables, as if they were dynamic libraries"),
     external_clangrt: bool = (false, parse_bool, [UNTRACKED],

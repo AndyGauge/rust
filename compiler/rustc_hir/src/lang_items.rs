@@ -428,6 +428,20 @@ language_item_table! {
     ContractCheckRequires,     sym::contract_check_requires,      contract_check_requires_fn,      Target::Fn, GenericRequirement::None;
 
     // Experimental lang items for `MCP: Low level components for async drop`(https://github.com/rust-lang/compiler-team/issues/727)
+    // Pool of up to 16 placeholder default auto traits; how many are active is
+    // controlled by `-Zexperimental-default-bounds-count` (default 4, max 16).
+    DefaultTrait16,          sym::default_trait16,     default_trait16_trait,      Target::Trait,          GenericRequirement::None;
+    DefaultTrait15,          sym::default_trait15,     default_trait15_trait,      Target::Trait,          GenericRequirement::None;
+    DefaultTrait14,          sym::default_trait14,     default_trait14_trait,      Target::Trait,          GenericRequirement::None;
+    DefaultTrait13,          sym::default_trait13,     default_trait13_trait,      Target::Trait,          GenericRequirement::None;
+    DefaultTrait12,          sym::default_trait12,     default_trait12_trait,      Target::Trait,          GenericRequirement::None;
+    DefaultTrait11,          sym::default_trait11,     default_trait11_trait,      Target::Trait,          GenericRequirement::None;
+    DefaultTrait10,          sym::default_trait10,     default_trait10_trait,      Target::Trait,          GenericRequirement::None;
+    DefaultTrait9,           sym::default_trait9,      default_trait9_trait,       Target::Trait,          GenericRequirement::None;
+    DefaultTrait8,           sym::default_trait8,      default_trait8_trait,       Target::Trait,          GenericRequirement::None;
+    DefaultTrait7,           sym::default_trait7,      default_trait7_trait,       Target::Trait,          GenericRequirement::None;
+    DefaultTrait6,           sym::default_trait6,      default_trait6_trait,       Target::Trait,          GenericRequirement::None;
+    DefaultTrait5,           sym::default_trait5,      default_trait5_trait,       Target::Trait,          GenericRequirement::None;
     DefaultTrait4,           sym::default_trait4,      default_trait4_trait,       Target::Trait,          GenericRequirement::None;
     DefaultTrait3,           sym::default_trait3,      default_trait3_trait,       Target::Trait,          GenericRequirement::None;
     DefaultTrait2,           sym::default_trait2,      default_trait2_trait,       Target::Trait,          GenericRequirement::None;

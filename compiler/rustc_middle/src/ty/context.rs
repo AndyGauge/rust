@@ -907,13 +907,21 @@ impl<'tcx> TyCtxt<'tcx> {
 
     /// Traits added on all bounds by default, excluding `Sized` which is treated separately.
     pub fn default_traits(self) -> &'static [rustc_hir::LangItem] {
+        // Pool of experimental default auto traits (MCP compiler-team#727). How
+        // many become implicit bounds is controlled by
+        // `-Zexperimental-default-bounds-count` (default 4, max 16), so the cost
+        // per default auto trait can be swept with a single compiler build.
+        static POOL: [rustc_hir::LangItem; 16] = [
+            LangItem::DefaultTrait1, LangItem::DefaultTrait2, LangItem::DefaultTrait3,
+            LangItem::DefaultTrait4, LangItem::DefaultTrait5, LangItem::DefaultTrait6,
+            LangItem::DefaultTrait7, LangItem::DefaultTrait8, LangItem::DefaultTrait9,
+            LangItem::DefaultTrait10, LangItem::DefaultTrait11, LangItem::DefaultTrait12,
+            LangItem::DefaultTrait13, LangItem::DefaultTrait14, LangItem::DefaultTrait15,
+            LangItem::DefaultTrait16,
+        ];
         if self.sess.opts.unstable_opts.experimental_default_bounds {
-            &[
-                LangItem::DefaultTrait1,
-                LangItem::DefaultTrait2,
-                LangItem::DefaultTrait3,
-                LangItem::DefaultTrait4,
-            ]
+            let n = self.sess.opts.unstable_opts.experimental_default_bounds_count.min(POOL.len());
+            &POOL[..n]
         } else {
             &[]
         }
