@@ -77,7 +77,18 @@ fn visit_implementation_of_drop(checker: &Checker<'_>) -> Result<(), ErrorGuaran
     let impl_did = checker.impl_def_id;
     // Destructors only work on local ADT types.
     match checker.impl_header.trait_ref.instantiate_identity().skip_norm_wip().self_ty().kind() {
-        ty::Adt(def, _) if def.did().is_local() => return Ok(()),
+        ty::Adt(def, _) if def.did().is_local() => {
+            // `AsyncDrop` may not be implemented for unions: a union has no async
+            // drop glue, so dropping it in a synchronous context would silently skip
+            // the async cleanup. Synchronous `Drop` on a union remains allowed.
+            if def.is_union() && Some(checker.trait_def_id) == tcx.lang_items().async_drop_trait() {
+                let impl_ = tcx.hir_expect_item(impl_did).expect_impl();
+                return Err(tcx
+                    .dcx()
+                    .emit_err(errors::AsyncDropOnUnion { span: impl_.self_ty.span }));
+            }
+            return Ok(());
+        }
         ty::Error(_) => return Ok(()),
         _ => {}
     }

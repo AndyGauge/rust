@@ -1,0 +1,11 @@
+error: the `AsyncDrop` trait may not be implemented for unions
+  --> $DIR/union.rs:28:20
+   |
+LL | impl AsyncDrop for U {
+   |                    ^ union with an `AsyncDrop` implementation
+   |
+   = note: a union has no async drop glue, so its async cleanup could be silently skipped
+   = help: implement the synchronous `Drop` trait instead
+
+error: aborting due to 1 previous error
+
